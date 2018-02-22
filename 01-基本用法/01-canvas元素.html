@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas元素</title>
+    <link rel="stylesheet" href="../common/css/common.css">
+    <script type="text/javascript" src="../common/js/common.js"></script>
+</head>
+<body>
+    <!-- canvas -->
+    <h3><span class="tag" data-code="<canvas>"></span> 元素</h3>
+    <div class="code">
+        <p data-code="<canvas id='canvas' width='300' height='150'></canvas>"></p>
+    </div>
+    <p class="row"><span class="tag normal" data-code="<canvas>"></span>看起来和<span class="tag normal" data-code="<img>"></span>元素相像，唯一不同的就是它没有src和alt属性。</p>
+    <p class="row">实际上，<span class="tag normal" data-code="<canvas>"></span>标签只有两个属性，<span class="tag normal" data-code="width"></span>和<span class="tag normal" data-code="height"></span>。</p>
+    <p class="row">当没有设置宽度和高度的时候，canvas会初始化宽度为300像素和高度为150像素</p>
+    <p class="row">该元素可以使用css来定义大小，但在绘制时图像会伸缩以适应它的框架尺寸:如果CSS的尺寸与初始画布比例不一致，它会出现扭曲</p>
+    <div class="warning">
+        <p>注意：如果你绘制出来的图像是扭曲的，尝试使用width和height属性为canvas明确宽高，而不是使用css</p>
+    </div>
+
+    <!-- 替换内容 -->
+    <h3><span class="tag" data-code="替换内容"></span></h3>
+    <p class="row">
+        <span class="tag normal" data-code="<canvas>"></span>元素不同于<span class="tag normal" data-code="<img>"></span>标签，
+        就像<span class="tag normal" data-code="<video>"></span>，<span class="tag normal" data-code="<audio>"></span>，或者<span class="tag normal" data-code="<picture>"></span>元素一样，
+        很容易定义一些替代内容。由于某些较老的浏览器(尤其是IE9以前的IE浏览器)或者文本浏览器不支持HTML元素canvas，在这些浏览器上你应该总是能展示替代内容。
+    </p>
+    <p class="row">
+        我们在<span class="tag normal" data-code="<canvas>"></span>标签中提供了替换内容。不支持<span class="tag normal" data-code="<canvas>"></span>的浏览器将会忽略容器并在其中渲染后备内容。
+        而支持<span class="tag normal" data-code="<canvas>"></span>的浏览器将会忽略在容器中包含的内容，并正常渲染canvas。
+    </p>
+    <div class="code">
+        <p data-code="<canvas id='canvas' width='300' height='150'>"></p>
+        <p data-indent="1" data-code="current stock price: $3.15 + 0.15"></p>
+        <p data-code="</canvas>"></p>
+        <p data-code=""></p>
+        <p data-code="<canvas id='canvas' width='300' height='150'>"></p>
+        <p data-indent="1" data-code="<img src='images/clock.png' width='150' height='150' alt=''/>"></p>
+        <p data-code="</canvas>"></p>
+    </div>
+
+    <!-- </canvas>标签不可省略 -->
+    <h3><span class="tag" data-code="</canvas>"></span>标签不可省略</h3>
+    <p class="row">
+        与<span class="tag normal" data-code="<img>"></span>元素不同，<span class="tag normal" data-code="<canvas>"></span>元素需要结束标签<span class="tag normal" data-code="</canvas>"></span>。
+        若结束标签不存在，则文档其余部分会被认为是替代内容，将不会显示出来。
+    </p>
+    <p class="row">
+        若不需要替代内容，一个简单的<span class="tag normal" data-code="<canvas id='foo'></canvas>"></span>在所有支持canvas的浏览器中都是完全兼容的。
+    </p>
+</body>
+</html>
