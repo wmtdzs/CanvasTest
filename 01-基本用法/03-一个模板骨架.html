@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一个模板骨架</title>
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="../common/css/prism.css">
+    <style type="text/css">
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- 一个模板骨架 -->
+    <h3><span class="tag-line" data-code="一个模板骨架"></span></h3>
+    <canvas width="150" height="150"></canvas>
+    <pre class="code line-numbers language-markup">
+        <code>&lt;html&gt;</code>
+        <code>&lt;head&gt;</code>
+        <code>&lt;title&gt;一个模板骨架&lt;/title&gt;</code>
+        <code>&lt;script type="text/javascript"&gt;</code>
+        <code class="language-javascript">  function draw(){</code>
+        <code>      var canvas = document.getElementById('tutorial');</code>
+        <code>      if (canvas.getContext){</code>
+        <code>          var ctx = canvas.getContext('2d');</code>
+        <code>      }</code>
+        <code>  }</code>
+        <code class="language-markup">&lt;/script&gt;</code>
+        <code>&lt;style type="text/css"&gt;</code>
+        <code class="language-css">  canvas { border: 1px solid black; }</code>
+        <code class="language-markup">&lt;/style&gt;</code>
+        <code>&lt;/head&gt;</code>
+        <code>&lt;body onload="draw();"&gt;</code>
+        <code>  &lt;canvas id="tutorial" width="150" height="150"&gt;&lt;/canvas&gt;</code>
+        <code>&lt;/body&gt;</code>
+        <code>&lt;/html&gt;</code>
+    </pre>
+    <script type="text/javascript" src="../common/js/common.js"></script>
+    <script type="text/javascript" src="../common/js/prism.js"></script>
+</body>
+</html>

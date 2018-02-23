@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单的小例子</title>
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="../common/css/prism.css">
+</head>
+<body>
+    <h3><span class="tag-line" data-code="简单的小例子"></span></h3>
+    <p class="row">
+        我们绘制了两个有趣的长方形，其中的一个有着alpha透明度
+    </p>
+    <canvas id="canvas" width="150" height="150"></canvas>
+    <pre class="code line-numbers language-markup">
+        <code>&lt;html&gt;</code>
+        <code>&lt;head&gt;</code>
+        <code>&lt;script type="application/javascript"&gt;</code>
+        <code class="language-javascript">  function draw() {</code>
+        <code>      var canvas = document.getElementById("canvas");</code>
+        <code>      if (canvas.getContext) {</code>
+        <code>          var ctx = canvas.getContext("2d");</code>
+        <code>          ctx.fillStyle = "rgb(200,0,0)";</code>
+        <code>          ctx.fillRect (10, 10, 55, 50);</code>
+        <code>          ctx.fillStyle = "rgba(0, 0, 200, 0.5)";</code>
+        <code>          ctx.fillRect (30, 30, 55, 50);</code>
+        <code>      }</code>
+        <code>  }</code>
+        <code class="language-markup">&lt;/script&gt;</code>
+        <code>&lt;/head&gt;</code>
+        <code>&lt;body onload="draw();"&gt;</code>
+        <code>  &lt;canvas id="canvas" width="150" height="150"&gt;&lt;/canvas&gt;</code>
+        <code>&lt;/body&gt;</code>
+        <code>&lt;/html&gt;</code>
+    </pre>
+    <script type="text/javascript" src="../common/js/common.js"></script>
+    <script type="text/javascript" src="../common/js/prism.js"></script>
+    <script type="application/javascript">
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var context = canvas.getContext('2d');
+                context.fillStyle = "rgb(200, 0, 0)";
+                context.fillRect(10, 10, 55, 50);
+                context.fillStyle = 'rgba(0, 0, 200, .5)';
+                context.fillRect(30, 30, 55, 50);
+            }
+        }
+
+        draw();
+    </script>
+</body>
+</html>

@@ -6,6 +6,11 @@
     font-weight: normal!important;
     color: #3f87a6;
 }
+.sub-title {
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+}
 .code {
     border-left: 5px solid #3f87a6;
     background-color: #eee;
