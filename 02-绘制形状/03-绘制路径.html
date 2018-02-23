@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制路径</title>
+    <link rel="stylesheet" href="../common/css/common.css">
+    <link rel="stylesheet" href="../common/css/prism.css">
+</head>
+<body>
+    <!-- 绘制路径 -->
+    <h3><span class="tag-line" data-code="绘制路径"></span></h3>
+    <p class="row">
+        图形的基本元素是路径。路径是通过不同颜色和宽度的线段或曲线相连形成的不同形状的点的集合。
+        一个路径，甚至一个子路径，都是闭合的。使用路径绘制图形需要一些额外的步骤。
+    </p>
+    <ol>
+        <li>首先，需要创建路径起始点</li>
+        <li>然后使用画图命令画出路径</li>
+        <li>之后把路径封闭</li>
+        <li>一旦路径生成，就能通过描边或填充路径区域来渲染图形</li>
+    </ol>
+    <p class="row">以下是所要用到的函数：</p>
+    <p>
+        <span class="tag-line normal" data-code="beginPath()"></span><br>
+        <span>新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径</span>
+    </p>
+    <p class="row">
+        <span class="tag-line normal" data-code="closePath()"></span><br>
+        <span>闭合路径之后图形绘制命令又重新指向到上下文中</span>
+    </p>
+    <p class="row">
+        <span class="tag-line normal" data-code="stroke()"></span><br>
+        <span>通过线条来绘制图形轮廓</span>
+    </p>
+    <p class="row">
+        <span class="tag-line normal" data-code="fill()"></span><br>
+        <span>通过填充路径的内容区域生成实心的图形</span>
+    </p>
+    <p class="row">
+        生成路径的第一步叫做beginPath()。本质上，路径是由很多子路径构成，这些子路径都是在
+        一个列表中，所有的子路径(线、弧形、等等)构成图形。而每次这个方法调用后，列表清空
+        重置，然后我们就可以重新绘制新的图形。
+    </p>
+    <div class="warning">
+        <p>
+            注意：当前路径为空，即调用beginPath()之后，或者canvas刚建的时候，第一条路径构造命令通常被视为是moveTo()，
+            无论实际上是什么。出于这个原因，你几乎总是要在设置路径之后专门指定你的起始位置。
+        </p>
+    </div>
+    <p class="row">第二步就是调用函数指定绘制路径</p>
+    <p class="row">
+        第三，就是闭合路径closePath()，不是必须的。这个方法会通过绘制一条从当前点到开始点的直线来别和图形。
+        如果图形是已经闭合了的，即当前点位开始点，该函数什么也不做。
+    </p>
+    <div class="warning">
+        <p>
+            注意：当调用fill()函数时，所有没有闭合的形状都会自动闭合，所以不需要调用closePath()函数。
+            但是调用stroke()时不会自动闭合。
+        </p>
+    </div>
+    <!-- 绘制一个三角形 -->
+    <h4><span class="sub-title">绘制一个三角形</span></h4>
+    <p class="row">绘制一个三角形，代码如下：</p>
+    <pre class="code line-numbers language-javascript">
+        <code>function draw() {</code>
+        <code>  var canvas = document.getElementById('canvas');</code>
+        <code>  if (canvas.getContext) {</code>
+        <code>      var ctx = canvas.getContext('2d');</code>
+        <code>      ctx.beginPath();</code>
+        <code>      ctx.moveTo(75, 50);</code>
+        <code>      ctx.lineTo(100, 75);</code>
+        <code>      ctx.lineTo(100, 25);</code>
+        <code>      ctx.fill();</code>
+        <code>  }</code>
+        <code>}</code>
+    </pre>
+    <canvas id="triangles" width="150" height="150"></canvas>
+    <!-- 移动笔触 -->
+    <h4><span class="sub-title">移动笔触</span></h4>
+    <p class="row">
+        一个非常有用的函数，而这个函数实际上并不能画出任何东西，也是上面所描述的路径列表的一部分，
+        这个函数就是moveTo(x, y)。或者你可以想象一下在纸上作业，一支钢笔或者铅笔的笔尖从一个点到
+        另一个店的移动过程。
+    </p>
+    <p class="row">
+        <span class="tag-line normal" data-code="moveTo(x, y)"></span><br>
+        <span>将笔触移动到指定的坐标x以及y上</span>
+    </p>
+    <p class="row">
+        当canvas初始化或者beginPath()调用后，你通常会使用moveTo()函数设置起点。我们也能够使用moveTo()
+        绘制一些不连续的路径。看一下下面的笑脸例子。
+    </p>
+    <pre class="code line-numbers language-javascript">
+        <code>function draw() {</code>
+        <code>  var canvas = document.getElementById('canvas');</code>
+        <code>  if (canvas.getContext) {</code>
+        <code>      var context = canvas.getContext('2d');</code>
+        <code>      context.beginPath();</code>
+        <code>      context.arc(75, 75, 50, 0, Math.PI * 2, true); // 绘制</code>
+        <code>      context.moveTo(110, 75);</code>
+        <code>      context.arc(75, 75, 35, 0, Math.PI, false); // 口(顺时针)</code>
+        <code>      context.moveTo(65, 65);</code>
+        <code>      context.arc(60, 65, 5, 0, Math.PI * 2, true); // 左眼</code>
+        <code>      context.moveTo(95, 65);</code>
+        <code>      context.arc(90, 65, 5, 0, Math.PI * 2, true); // 右眼</code>
+        <code>      context.stroke();</code>
+        <code>  }</code>
+        <code>}</code>
+    </pre>
+    <canvas id="face" width="150" height="150"></canvas>
+    <script type="text/javascript" src="../common/js/common.js"></script>
+    <script type="text/javascript" src="../common/js/prism.js"></script>
+    <script type="text/javascript">
+        function drawTriangles() {
+            var canvas = document.getElementById('triangles');
+            if (canvas.getContext) {
+                var context = canvas.getContext('2d');
+                context.beginPath();
+                context.moveTo(75, 75);
+                context.lineTo(100, 50);
+                context.lineTo(100, 100);
+                context.fill();
+            }
+        }
+        drawTriangles();
+
+        function drawFace() {
+            var canvas = document.getElementById('face');
+            if (canvas.getContext) {
+                var context = canvas.getContext('2d');
+                context.beginPath();
+                context.arc(75, 75, 50, 0, Math.PI * 2, true); // 绘制
+                context.moveTo(110, 75);
+                context.arc(75, 75, 35, 0, Math.PI, false); // 口(顺时针)
+                context.moveTo(65, 65);
+                context.arc(60, 65, 5, 0, Math.PI * 2, true); // 左眼
+                context.moveTo(95, 65);
+                context.arc(90, 65, 5, 0, Math.PI * 2, true); // 右眼
+                context.stroke();
+            }
+        }
+        drawFace();
+    </script>
+</body>
+</html>
