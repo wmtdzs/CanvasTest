@@ -58,6 +58,7 @@
             但是调用stroke()时不会自动闭合。
         </p>
     </div>
+
     <!-- 绘制一个三角形 -->
     <h4><span class="sub-title">绘制一个三角形</span></h4>
     <p class="row">绘制一个三角形，代码如下：</p>
@@ -74,7 +75,8 @@
         <code>  }</code>
         <code>}</code>
     </pre>
-    <canvas id="triangles" width="150" height="150"></canvas>
+    <canvas id="triangle" width="150" height="150"></canvas>
+
     <!-- 移动笔触 -->
     <h4><span class="sub-title">移动笔触</span></h4>
     <p class="row">
@@ -108,11 +110,129 @@
         <code>}</code>
     </pre>
     <canvas id="face" width="150" height="150"></canvas>
+    <p class="row">
+        若想看到连续的线，可以去掉调用moveTo()方法。
+    </p>
+
+    <!-- 线 -->
+    <h4><span class="sub-title">线</span></h4>
+    <p class="row">绘制直线，需要用到的方法lineTo()</p>
+    <p class="row">
+        <span class="tag-line normal" data-code="lineTo(x, y)"></span><br>
+        <span>绘制一条从当前位置到指定x以及y位置的直线</span>
+    </p>
+    <p class="row">
+        该方法有两个参数：x以及y，代表坐标系中直线结束的点。开始点和之前的绘制路径有关，
+        之前路径的结束点就是接下来的开始点，开始点也可以通过moveTo()函数改变。
+    </p>
+    <p class="row">
+        下面的例子绘制了两个三角形，一个是填充的，另一个是描边的。
+    </p>
+    <pre class="code line-numbers language-javascript">
+        <code>function draw() {</code>
+        <code>  var canvas = document.getElementById('canvas');</code>
+        <code>  if (canvas) {</code>
+        <code>      var context = canvas.getContext('2d');</code>
+        <code>      // 填充三角形</code>
+        <code>      context.beginPath();</code>
+        <code>      context.moveTo(25, 25);</code>
+        <code>      context.lineTo(105, 25)</code>
+        <code>      context.lineTo(25, 105)</code>
+        <code>      context.fill();</code>
+        <code></code>
+        <code>      // 描边三角形</code>
+        <code>      context.beginPath();</code>
+        <code>      context.moveTo(125, 125);</code>
+        <code>      context.lineTo(125, 45);</code>
+        <code>      context.lineTo(45, 125);</code>
+        <code>      context.closePath();</code>
+        <code>      context.stroke();</code>
+        <code>  }</code>
+        <code>}</code>
+    </pre>
+    <canvas id="triangles" width="150" height="150"></canvas>
+    <p class="row">
+        你会注意到填充与描边三角形步骤有所不同。正如上面所提到的，因为路径使用填充(filled)时，
+        路径自动闭合，使用描边(stroked)则不会闭合路径。如果没有添加闭合路径closePath()到描述
+        三角形函数中，则只绘制了两条线段，并不是一个完整的三角形。
+    </p>
+
+    <!-- 圆弧 -->
+    <h4><span class="sub-title">圆弧</span></h4>
+    <p class="row">
+        绘制圆弧或者圆，我们使用<span class="tag-line normal" data-code="arc()"></span>方法。
+        当然可以使用<span class="tag-line normal" data-code="arcTo()"></span>，不过这个的实现
+        不是那么可靠，所以不做介绍。
+    </p>
+    <p class="row">
+        <span class="tag-line normal" data-code="arc(x, y, radius, startAngle, endAngle, anticlockwise)"></span><br>
+        画一个以(x, y)为圆心的以radius为半径的圆弧(圆)，从startAngle开始到endAngle结束，按照anticlockwise给定的方向(默认为顺时针)
+        来生成。
+    </p>
+    <p class="row">
+        <span class="tag-line normal" data-code="arcTo(x1, y1, x2, y2, radius)"></span><br>
+        根据给定的控制点和半径画一段圆弧，再以直线连接两个控制点。
+    </p>
+    <p class="row">
+        这里详细介绍一下arc方法，该方法有六个参数：x,y为绘制圆弧所在圆上的圆心坐标。radius为半径。
+        startAngle以及endAngle参数用弧度定义了开始以及结束的弧度。这些都是已x轴为基准。参数anticlockwise
+        为一个布尔值。为true时，是逆时针方向，否则为顺时针方向。
+    </p>
+    <div class="warning">
+        <p>
+            <span>注意：arc()函数中的角度单位是弧度，不是度数。</span><br>
+            <span>角度与弧度的js表达式：radians = (Math.PI / 180) * degrees。</span>
+        </p>
+    </div>
+    <p class="row">
+        下面绘制了12个不同的角度以及填充的圆弧
+    </p>
+    <p class="row">
+        下面两个for循环，生成圆弧的行列(x, y)坐标。每一段圆弧的开始都调用beginPath()。代码中，
+        每个圆弧的参数都是可变的，实际生活中，我们并不需要这样做。
+    </p>
+    <p class="row">
+        x, y坐标是可变的。半径(radius)和开始角度(startAngle)都是固定的。结束角度(endAngle)在
+        第一列开始时是180度(半圆)然后没每列增加90度。最后一列形成一个完整的圆。
+    </p>
+    <p class="row">
+        closewise语句作用于第一、三行是顺时针的圆弧，anticlockwise作用于二、四行为逆时针圆弧。
+        if语句让一、二描边圆弧，下面两行填充路径。
+    </p>
+    <div class="warning">
+        <p>注意：这个示例所需的画布大小略大于本页面的其他例子：150 * 200像素。</p>
+    </div>
+    <pre class="code max-width-800 line-numbers language-javascript">
+        <code>function draw() {</code>
+        <code>  var canvas = document.getElementById('canvas');</code>
+        <code>  if (canvas.getContext) {</code>
+        <code>      var context = canvas.getContext('2d');</code>
+        <code>      for (var i = 0, iLength = 4; i < iLength; i+=1) {</code>
+        <code>          for (var j = 0, jLength = 3; j < jLength; j+=1) {</code>
+        <code>              var x = 25 + (j * 50); // x 坐标值</code>
+        <code>              var y = 25 + (i * 50); // y 坐标值</code>
+        <code>              var radius = 20; // 圆弧半径</code>
+        <code>              var startAngle = 0; // 开始点</code>
+        <code>              var endAngle = Math.PI + (Math.PI * j) / 2 // 结束点</code>
+        <code>              var anticlockwise = i % 2 == 0 ? false : true; // 顺时针或逆时针</code>
+        <code>              context.arc(x , y, radius, startAngle, endAngle, anticlockwise);</code>
+        <code>              if (i > 1) {</code>
+        <code>                  context.fill();</code>
+        <code>              } else {</code>
+        <code>                  context.stroke();</code>
+        <code>              }</code>
+        <code>          }</code>
+        <code>      }</code>
+        <code>  }</code>
+        <code>}</code>
+    </pre>
+    <canvas id="circles" width="150" height="200"></canvas>
+
     <script type="text/javascript" src="../common/js/common.js"></script>
     <script type="text/javascript" src="../common/js/prism.js"></script>
     <script type="text/javascript">
-        function drawTriangles() {
-            var canvas = document.getElementById('triangles');
+        function drawTriangle() {
+            var canvas = document.getElementById('triangle');
             if (canvas.getContext) {
                 var context = canvas.getContext('2d');
                 context.beginPath();
@@ -122,7 +242,7 @@
                 context.fill();
             }
         }
-        drawTriangles();
+        drawTriangle();
 
         function drawFace() {
             var canvas = document.getElementById('face');
@@ -140,6 +260,53 @@
             }
         }
         drawFace();
+
+        function drawTriangles() {
+            var canvas = document.getElementById('triangles');
+            if (canvas.getContext) {
+                var context = canvas.getContext('2d');
+                // 填充三角形
+                context.beginPath();
+                context.moveTo(25, 25);
+                context.lineTo(105, 25);
+                context.lineTo(25, 105);
+                context.fill();
+
+                // 描边三角形
+                context.beginPath();
+                context.moveTo(125, 125);
+                context.lineTo(125, 45);
+                context.lineTo(45, 125);
+                context.closePath();
+                context.stroke();
+            }
+        }
+        drawTriangles();
+
+        function drawCircles() {
+            var canvas = document.getElementById('circles');
+            if (canvas.getContext) {
+                var context = canvas.getContext('2d');
+                for (var i = 0, iLength = 4; i < iLength; i+=1) {
+                    for (var j = 0, jLength = 3; j < jLength; j+=1) {
+                        context.beginPath();
+                        var x = 25 + (j * 50); // x 坐标值
+                        var y = 25 + (i * 50); // y 坐标值
+                        var radius = 20; // 半径
+                        var startAngle = 0; // 开始角度
+                        var endAngle = Math.PI + (Math.PI * j) / 2; // 结束角度，初始180度，每次加90度，最后一次为2 * PI(绘制完整圆)
+                        var anticlockwise = i % 2 == 0 ? false : true;
+                        context.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+                        if (i > 1) {
+                            context.fill();
+                        } else {
+                            context.stroke();
+                        }
+                    }
+                }
+            }
+        }
+        drawCircles();
     </script>
 </body>
 </html>
