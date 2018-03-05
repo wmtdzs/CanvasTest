@@ -241,7 +241,7 @@
 
         <!-- 二次贝赛尔曲线和三次贝赛尔曲线 -->
         <div>
-            <h4><span class="sub-title">圆弧</span></h4>
+            <h4><span class="sub-title">二次贝塞尔曲线和三次贝塞尔曲线</span></h4>
             <p class="row">
                 二次贝塞尔曲线和三次贝赛尔曲线都十分有用，一般用来绘制复杂有规律的图形
             </p>
@@ -307,6 +307,22 @@
                 <code>}</code>
             </pre>
             <canvas id="bezier" width="150" height="150"></canvas>
+        </div>
+
+        <!-- 矩形 -->
+        <div>
+            <h4><span class="sub-title">矩形</span></h4>
+            <p class="row">
+                直接在画布上绘制矩形的三个额外方法，rect()方法，将一个矩形路径增加到当前路径上。
+            </p>
+            <p class="row">
+                <span class="tag-line normal" data-code="rect(x, y, width, height)"></span><br>
+                绘制一个左上角坐标为(x, y)，宽高为width和height的矩形。
+            </p>
+            <p class="row">
+                当该方法执行的时候，moveTo()方法自动设置坐标参数(0, 0)。也就是说，当前笔触自动重置回默认坐标。
+            </p>
+            <canvas id="rect" width="150" height="150"></canvas>
         </div>
     </div>
 
@@ -430,7 +446,23 @@
                 context.fill();
             }
         }
-        drawBezier()
+        drawBezier();
+
+        // 绘制矩形
+        function drawRect() {
+            var canvas = document.getElementById('rect');
+            if (canvas.getContext) {
+                var context = canvas.getContext('2d');
+                context.beginPath();
+                context.rect(25, 25, 60, 60);
+                context.fillStyle = 'rgba(255, 0, 0, .6)';
+                context.lineTo(15, 50);
+                context.lineTo(25, 50);
+                context.lineTo(85 ,85);
+                context.fill();
+            }
+        }
+        drawRect();
     </script>
 </body>
 </html>
