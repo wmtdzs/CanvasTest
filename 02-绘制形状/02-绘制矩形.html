@@ -7,42 +7,45 @@
     <link rel="stylesheet" href="../common/css/prism.css">
 </head>
 <body>
-    <h3><span class="tag-line" data-code="绘制矩形"></span></h3>
-    <p class="row">
-        不用于SVG，HTML中的元素canvas只支持一种原生的图形绘制：矩形。所有其他图形的绘制
-        都至少需要生成一条路径。不过，拥有众多路径生成方法让复杂图形的绘制成为了可能。
-    </p>
-    <p class="row">canvas提供了三种方法绘制矩形:</p>
-    <p>
-        <span class="tag-line normal" data-code="fillRect(x, y, width, height)"></span><br>
-        <span>绘制一个填充矩形</span>
-    </p>
-    <p class="row">
-        <span class="tag-line normal" data-code="storkRect(x, y, width, height)"></span><br>
-        <span>绘制一个矩形边框</span>
-    </p>
-    <p class="row">
-        <span class="tag-line normal" data-code="clearRect(x, y, width, height)"></span><br>
-        <span>清除指定矩形区域，让清除部分完全透明</span>
-    </p>
-    <p class="row">
-        上面提供的方法之中每一个都包含了相同的参数，x与y指定了在canvas画布上所绘制的矩形的左上角(相对于原点)的坐标。
-        width和height设置矩形的尺寸。
-    </p>
-    <h4><span class="sub-title">矩形(Rectangular)例子</span></h4>
-    <pre class="code line-numbers language-javascript">
-        <code>function draw() {</code>
-        <code>  var canvas = document.getElementById('canvas');</code>
-        <code>  if (canvas.getContext) {</code>
-        <code>      var ctx = canvas.getContext('2d');
-        </code>
-        <code>      ctx.fillRect(25, 25, 100, 100);</code>
-        <code>      ctx.clearRect(45, 45, 60, 60);</code>
-        <code>      ctx.strokeRect(50, 50, 50, 50);</code>
-        <code>  }</code>
-        <code>}</code>
-    </pre>
-    <canvas id="canvas" width="150" height="150"></canvas>
+    <div class="container">
+        <h3><span class="tag-line" data-code="绘制矩形"></span></h3>
+        <p class="row">
+            不用于SVG，HTML中的元素canvas只支持一种原生的图形绘制：矩形。所有其他图形的绘制
+            都至少需要生成一条路径。不过，拥有众多路径生成方法让复杂图形的绘制成为了可能。
+        </p>
+        <p class="row">canvas提供了三种方法绘制矩形:</p>
+        <p>
+            <span class="tag-line normal" data-code="fillRect(x, y, width, height)"></span><br>
+            <span>绘制一个填充矩形</span>
+        </p>
+        <p class="row">
+            <span class="tag-line normal" data-code="storkRect(x, y, width, height)"></span><br>
+            <span>绘制一个矩形边框</span>
+        </p>
+        <p class="row">
+            <span class="tag-line normal" data-code="clearRect(x, y, width, height)"></span><br>
+            <span>清除指定矩形区域，让清除部分完全透明</span>
+        </p>
+        <p class="row">
+            上面提供的方法之中每一个都包含了相同的参数，x与y指定了在canvas画布上所绘制的矩形的左上角(相对于原点)的坐标。
+            width和height设置矩形的尺寸。
+        </p>
+        <h4><span class="sub-title">矩形(Rectangular)例子</span></h4>
+        <pre class="code line-numbers language-javascript">
+            <code>function draw() {</code>
+            <code>  var canvas = document.getElementById('canvas');</code>
+            <code>  if (canvas.getContext) {</code>
+            <code>      var ctx = canvas.getContext('2d');
+            </code>
+            <code>      ctx.fillRect(25, 25, 100, 100);</code>
+            <code>      ctx.clearRect(45, 45, 60, 60);</code>
+            <code>      ctx.strokeRect(50, 50, 50, 50);</code>
+            <code>  }</code>
+            <code>}</code>
+        </pre>
+        <canvas id="canvas" width="150" height="150"></canvas>
+    </div>
+
     <script type="text/javascript" src="../common/js/common.js"></script>
     <script type="text/javascript" src="../common/js/prism.js"></script>
     <script type="text/javascript">

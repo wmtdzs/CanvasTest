@@ -1,3 +1,8 @@
+.container {
+    min-width:600px;
+    max-width: 800px;
+    margin: 0 auto;
+}
 .tag-line {
     font-weight: bold;
     background-color: #eee;
@@ -37,4 +42,7 @@
     margin: 0;
     padding-left: 10px;
     line-height: 1.4;
+}
+.pull-right {
+    float: right!important;
 }
